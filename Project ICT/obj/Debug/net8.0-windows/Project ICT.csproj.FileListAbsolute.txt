@@ -1,0 +1,21 @@
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\bin\Debug\net8.0-windows\Project ICT.exe
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\bin\Debug\net8.0-windows\Project ICT.deps.json
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\bin\Debug\net8.0-windows\Project ICT.runtimeconfig.json
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\bin\Debug\net8.0-windows\Project ICT.dll
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\bin\Debug\net8.0-windows\Project ICT.pdb
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\obj\Debug\net8.0-windows\Project ICT_MarkupCompile.cache
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\obj\Debug\net8.0-windows\Project ICT_MarkupCompile.lref
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\obj\Debug\net8.0-windows\Project ICT.g.resources
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\obj\Debug\net8.0-windows\Project ICT.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\obj\Debug\net8.0-windows\Project ICT.AssemblyInfoInputs.cache
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\obj\Debug\net8.0-windows\Project ICT.AssemblyInfo.cs
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\obj\Debug\net8.0-windows\Project ICT.csproj.CoreCompileInputs.cache
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\obj\Debug\net8.0-windows\Project ICT.sourcelink.json
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\obj\Debug\net8.0-windows\Project ICT.dll
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\obj\Debug\net8.0-windows\refint\Project ICT.dll
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\obj\Debug\net8.0-windows\Project ICT.pdb
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\obj\Debug\net8.0-windows\Project ICT.genruntimeconfig.cache
+C:\Users\jelle\Documents\GitHub\Arduino-Sound\Project ICT\obj\Debug\net8.0-windows\ref\Project ICT.dll

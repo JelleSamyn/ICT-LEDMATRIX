@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:Project_ICT"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <StackPanel Margin="0,0,0,389" Background="#FF9A9A9A">
+    </StackPanel>
 </Window>
