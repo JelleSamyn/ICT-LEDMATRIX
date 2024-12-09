@@ -1,11 +1,23 @@
 ﻿<Window x:Class="Project_ICT.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Project_ICT"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <StackPanel Margin="0,0,0,389" Background="#FF9A9A9A">
-    </StackPanel>
+        Title="Arduino Text Control" Height="200" Width="300"
+        Closed="Window_Closed">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" MinHeight="43" />
+            <RowDefinition Height="6*" />
+            <RowDefinition Height="38*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+
+        <ComboBox x:Name="ComboBoxPorts" Grid.Row="0" Margin="0,0,80,10" />
+        <Button x:Name="ButtonConnect" Grid.Row="0" Content="Connect" Width="80" HorizontalAlignment="Left" Click="ButtonConnect_Click" Margin="200,0,0,38" Grid.RowSpan="2" />
+
+        <TextBox x:Name="TextBoxMessage" Grid.Row="1" IsEnabled="False" Margin="0,10,0,10" />
+        <Button x:Name="ButtonSend" Grid.Row="2" Content="Send" Width="80" IsEnabled="False" HorizontalAlignment="Left" Click="ButtonSend_Click" Margin="200,0,0,5" />
+        <Button x:Name="ButtonReset" Grid.Row="4" Content="Reset" Width="80" HorizontalAlignment="Left" Click="ButtonReset_Click" Margin="200,1,0,0" />
+    </Grid>
 </Window>
