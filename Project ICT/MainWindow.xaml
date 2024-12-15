@@ -1,23 +1,59 @@
 ﻿<Window x:Class="Project_ICT.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Arduino Text Control" Height="200" Width="300"
+        Title="Arduino Mode Control" Height="400" Width="500"
         Closed="Window_Closed">
     <Grid Margin="10">
+        <!-- Grid met rijen -->
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" MinHeight="43" />
-            <RowDefinition Height="6*" />
-            <RowDefinition Height="38*"/>
-            <RowDefinition Height="7*"/>
+            <RowDefinition Height="*" />
+            <!-- Row voor TabControl -->
         </Grid.RowDefinitions>
 
-        <ComboBox x:Name="ComboBoxPorts" Grid.Row="0" Margin="0,0,80,10" />
-        <Button x:Name="ButtonConnect" Grid.Row="0" Content="Connect" Width="80" HorizontalAlignment="Left" Click="ButtonConnect_Click" Margin="200,0,0,38" Grid.RowSpan="2" />
+        <!-- TabControl bovenaan -->
+        <TabControl x:Name="TabControlModes" Grid.Row="0" SelectionChanged="TabControlModes_SelectionChanged">
+            <!-- Eerste Tab: Connectie -->
+            <TabItem Header="Connectie">
+                <Grid Background="#FFE5E5E5" Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-        <TextBox x:Name="TextBoxMessage" Grid.Row="1" IsEnabled="False" Margin="0,10,0,10" />
-        <Button x:Name="ButtonSend" Grid.Row="2" Content="Send" Width="80" IsEnabled="False" HorizontalAlignment="Left" Click="ButtonSend_Click" Margin="200,0,0,5" />
-        <Button x:Name="ButtonReset" Grid.Row="4" Content="Reset" Width="80" HorizontalAlignment="Left" Click="ButtonReset_Click" Margin="200,1,0,0" />
+                    <ComboBox x:Name="ComboBoxPorts" Grid.Row="0" Margin="0,0,0,10" />
+                    <Button x:Name="ButtonConnect" Grid.Row="1" Content="Connect" Width="80" HorizontalAlignment="Left" Click="ButtonConnect_Click" />
+                </Grid>
+            </TabItem>
+
+            <!-- Tweede Tab: Tekst Verzender -->
+            <TabItem Header="Text Verzender">
+                <Grid Background="#FFE5E5E5" Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBox x:Name="TextBoxMessage" Grid.Row="0" Margin="0,0,0,10" />
+                    <Button x:Name="ButtonSend" Grid.Row="1" Content="Send" Width="80" HorizontalAlignment="Left" Click="ButtonSend_Click" />
+                    <Button x:Name="ButtonReset" Grid.Row="1" Content="Reset" Width="80" HorizontalAlignment="Left" Click="ButtonReset_Click" Margin="0,21,0,-21" IsEnabled="False"/>
+                </Grid>
+            </TabItem>
+
+            <!-- Derde Tab: Leeg -->
+            <TabItem Header="EQ Control">
+                <Grid Background="#FFE5E5E5" Margin="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Label voor uitleg -->
+                    <TextBlock Text="EQ Control:" Grid.Row="0" Margin="0,0,0,10" FontWeight="Bold" />
+
+                    <!-- CheckBox voor EQ Aan/Af -->
+                    <CheckBox x:Name="CheckBoxEQControl" Grid.Row="1" Content="Enable EQ" Checked="CheckBoxEQControl_Checked" Unchecked="CheckBoxEQControl_Unchecked" />
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
