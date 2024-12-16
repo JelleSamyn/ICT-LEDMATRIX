@@ -10,15 +10,11 @@
 #include <MD_MAX72xx.h>
 #include <SPI.h>
 
-#define IMMEDIATE_NEW 0  // if 1 will immediately display a new message
+#define IMMEDIATE_NEW   0     // if 1 will immediately display a new message
 #define USE_POT_CONTROL 1
-#define PRINT_CALLBACK 0
+#define PRINT_CALLBACK  0
 
-#define PRINT(s, v) \
-  { \
-    Serial.print(F(s)); \
-    Serial.print(v); \
-  }
+#define PRINT(s, v) { Serial.print(F(s)); Serial.print(v); }
 
 // Define the number of devices we have in the chain and the hardware interface
 // NOTE: These pin numbers will probably not work with your hardware and may
@@ -26,9 +22,9 @@
 #define HARDWARE_TYPE MD_MAX72XX::FC16_HW
 #define MAX_DEVICES 4
 
-#define CLK_PIN 13   // or SCK
-#define DATA_PIN 11  // or MOSI
-#define CS_PIN 10    // or SS
+#define CLK_PIN   13  // or SCK
+#define DATA_PIN  11  // or MOSI
+#define CS_PIN    10  // or SS
 
 // SPI hardware interface
 MD_MAX72XX mx = MD_MAX72XX(HARDWARE_TYPE, CS_PIN, MAX_DEVICES);
@@ -37,27 +33,29 @@ MD_MAX72XX mx = MD_MAX72XX(HARDWARE_TYPE, CS_PIN, MAX_DEVICES);
 
 // Scrolling parameters
 #if USE_POT_CONTROL
-#define SPEED_IN A5
+#define SPEED_IN  A5
 #else
-#define SCROLL_DELAY 75  // in milliseconds
-#endif                   // USE_POT_CONTROL
+#define SCROLL_DELAY  75  // in milliseconds
+#endif // USE_POT_CONTROL
 
-#define CHAR_SPACING 1  // pixels between characters
+#define CHAR_SPACING  1 // pixels between characters
 
 // Global message buffers shared by Serial and Scrolling functions
-#define BUF_SIZE 75
+#define BUF_SIZE  75
 uint8_t curMessage[BUF_SIZE] = { "Hello!  " };
 uint8_t newMessage[BUF_SIZE];
 bool newMessageAvailable = false;
 
-uint16_t scrollDelay;  // in milliseconds
+uint16_t  scrollDelay;  // in milliseconds
 
-void readSerial(void) {
-  static uint8_t putIndex = 0;
+void readSerial(void)
+{
+  static uint8_t  putIndex = 0;
 
-  while (Serial.available()) {
+  while (Serial.available())
+  {
     newMessage[putIndex] = (char)Serial.read();
-    if ((newMessage[putIndex] == '\n') || (putIndex >= BUF_SIZE - 3))  // end of message character or full buffer
+    if ((newMessage[putIndex] == '\n') || (putIndex >= BUF_SIZE-3)) // end of message character or full buffer
     {
       // put in a message separator and end the string
       newMessage[putIndex++] = ' ';
@@ -65,7 +63,8 @@ void readSerial(void) {
       // restart the index for next filling spree and flag we have a message waiting
       putIndex = 0;
       newMessageAvailable = true;
-    } else if (newMessage[putIndex] != '\r')
+    }
+    else if (newMessage[putIndex] != '\r')
       // Just save the next char in next location
       putIndex++;
   }
@@ -88,59 +87,59 @@ uint8_t scrollDataSource(uint8_t dev, MD_MAX72XX::transformType_t t)
 // Callback function for data that is required for scrolling into the display
 {
   static uint8_t* p = curMessage;
-  static enum { NEW_MESSAGE,
-                LOAD_CHAR,
-                SHOW_CHAR,
-                BETWEEN_CHAR } state = LOAD_CHAR;
-  static uint8_t curLen, showLen;
-  static uint8_t cBuf[15];
-  uint8_t colData = 0;  // blank column is the default
+  static enum { NEW_MESSAGE, LOAD_CHAR, SHOW_CHAR, BETWEEN_CHAR } state = LOAD_CHAR;
+  static uint8_t  curLen, showLen;
+  static uint8_t  cBuf[15];
+  uint8_t colData = 0;    // blank column is the default
 
 #if IMMEDIATE_NEW
   if (newMessageAvailable)  // there is a new message waiting
   {
     state = NEW_MESSAGE;
-    mx.clear();  // clear the display
+    mx.clear(); // clear the display
   }
 #endif
 
   // finite state machine to control what we do on the callback
-  switch (state) {
-    case NEW_MESSAGE:                            // Load the new message
-      memcpy(curMessage, newMessage, BUF_SIZE);  // copy it in
-      newMessageAvailable = false;               // used it!
+  switch(state)
+  {
+    case NEW_MESSAGE:   // Load the new message
+      memcpy(curMessage, newMessage, BUF_SIZE);	// copy it in
+      newMessageAvailable = false;    // used it!
       p = curMessage;
       state = LOAD_CHAR;
       break;
 
-    case LOAD_CHAR:  // Load the next character from the font table
-      showLen = mx.getChar(*p++, sizeof(cBuf) / sizeof(cBuf[0]), cBuf);
+    case LOAD_CHAR: // Load the next character from the font table
+      showLen = mx.getChar(*p++, sizeof(cBuf)/sizeof(cBuf[0]), cBuf);
       curLen = 0;
       state = SHOW_CHAR;
 
       // if we reached end of message, opportunity to load the next
-      if (*p == '\0') {
-        p = curMessage;  // reset the pointer to start of message
+      if (*p == '\0')
+      {
+        p = curMessage;     // reset the pointer to start of message
 #if !IMMEDIATE_NEW
         if (newMessageAvailable)  // there is a new message waiting
         {
-          state = NEW_MESSAGE;  // we will load it here
+          state = NEW_MESSAGE;    // we will load it here
           break;
         }
 #endif
       }
       // !! deliberately fall through to next state to start displaying
 
-    case SHOW_CHAR:  // display the next part of the character
+    case SHOW_CHAR: // display the next part of the character
       colData = cBuf[curLen++];
-      if (curLen == showLen) {
+      if (curLen == showLen)
+      {
         showLen = CHAR_SPACING;
         curLen = 0;
         state = BETWEEN_CHAR;
       }
       break;
 
-    case BETWEEN_CHAR:  // display inter-character spacing (blank columns)
+    case BETWEEN_CHAR: // display inter-character spacing (blank columns)
       colData = 0;
       curLen++;
       if (curLen == showLen)
@@ -151,33 +150,37 @@ uint8_t scrollDataSource(uint8_t dev, MD_MAX72XX::transformType_t t)
       state = LOAD_CHAR;
   }
 
-  return (colData);
+  return(colData);
 }
 
-void scrollText(void) {
-  static uint32_t prevTime = 0;
+ void scrollText(void)
+{
+  static uint32_t	prevTime = 0;
 
   // Is it time to scroll the text?
-  if (millis() - prevTime >= scrollDelay) {
+  if (millis()-prevTime >= scrollDelay)
+  {
     mx.transform(MD_MAX72XX::TSL);  // scroll along - the callback will load all the data
-    prevTime = millis();            // starting point for next time
+    prevTime = millis();      // starting point for next time
   }
 }
 
-uint16_t getScrollDelay(void) {
+uint16_t getScrollDelay(void)
+{
 #if USE_POT_CONTROL
-  uint16_t t;
+  uint16_t  t;
 
   t = analogRead(SPEED_IN);
   t = map(t, 0, 1023, 25, 250);
 
-  return (t);
+  return(t);
 #else
-  return (SCROLL_DELAY);
+  return(SCROLL_DELAY);
 #endif
 }
 
-void setup() {
+void setup2()
+{
   mx.begin();
   mx.setShiftDataInCallback(scrollDataSource);
   mx.setShiftDataOutCallback(scrollDataSink);
@@ -194,34 +197,34 @@ void setup() {
   Serial.print("\n[MD_MAX72XX Message Display]\nType a message for the scrolling display\nEnd message line with a newline");
 }
 
-bool eqActive = false;
+bool Scroll = false;  // Initialize Scroll variable as false
 
-void loop() {
+void loop2() {
   // Check if there's new input from the Serial Monitor
   if (Serial.available()) {
     String command = Serial.readStringUntil('\n');
     command.trim();  // Remove any extra spaces or newline characters
     Serial.println(command);
 
-    if (command == "EQ_ON") {
-      eqActive = true;
-      Serial.println("Equalizer started");
-    } else if (command == "EQ_OFF") {
-      eqActive = false;  // Fix: set eqActive to false, not command
-      mx.clear();
-      mx.update();
-      Serial.println("Equalizer stopped");
+    // Toggle scrolling based on the command
+    if (command == "START") {
+      Scroll = true;
+      Serial.println("Scrolling started");
+    } else if (command == "STOP") {
+      Scroll = false;
+      mx.clear();  // Clear the display when STOP command is received
+      mx.update();  // Ensure the display updates to clear it
+      Serial.println("Scrolling stopped");
     }
   }
 
-  if (eqActive) {
+  if (Scroll) {
     // If Scroll is true, perform scrolling actions
     scrollDelay = getScrollDelay();
     readSerial();
     scrollText();
-  } else {
-    // Ensure display is cleared and no scrolling happens
-    mx.clear();
-    mx.update();
   }
 }
+
+
+
