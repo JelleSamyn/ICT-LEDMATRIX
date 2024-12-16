@@ -1736,11 +1736,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jelle\\Desktop\\school\\Arduino-Sound\\Project ICT\\Project ICT.csproj",
+      "projectUniqueName": "C:\\Users\\jelle\\Documents\\GitHub\\Arduino-Sound\\Project ICT\\Project ICT.csproj",
       "projectName": "Project ICT",
-      "projectPath": "C:\\Users\\jelle\\Desktop\\school\\Arduino-Sound\\Project ICT\\Project ICT.csproj",
+      "projectPath": "C:\\Users\\jelle\\Documents\\GitHub\\Arduino-Sound\\Project ICT\\Project ICT.csproj",
       "packagesPath": "C:\\Users\\jelle\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jelle\\Desktop\\school\\Arduino-Sound\\Project ICT\\obj\\",
+      "outputPath": "C:\\Users\\jelle\\Documents\\GitHub\\Arduino-Sound\\Project ICT\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -1771,7 +1771,7 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "direct"
+        "auditMode": "all"
       },
       "SdkAnalysisLevel": "9.0.100"
     },
@@ -1803,7 +1803,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

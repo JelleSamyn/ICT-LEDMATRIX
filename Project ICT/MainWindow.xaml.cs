@@ -16,6 +16,7 @@ namespace Project_ICT
             // Zorg ervoor dat deze elementen uitgeschakeld beginnen.
             TextBoxMessage.IsEnabled = false;
             ButtonSend.IsEnabled = false;
+
         }
 
         private void LoadAvailablePorts()
@@ -166,7 +167,7 @@ namespace Project_ICT
                 if (_serialPort != null && _serialPort.IsOpen)
                 {
                     _serialPort.WriteLine("EQ_ON");
-                    MessageBox.Show("Equalizer ingeschakeld.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Scroller ingeschakeld.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
@@ -175,7 +176,7 @@ namespace Project_ICT
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Fout bij inschakelen EQ: {ex.Message}", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Fout bij inschakelen Scroller: {ex.Message}", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -186,7 +187,7 @@ namespace Project_ICT
                 if (_serialPort != null && _serialPort.IsOpen)
                 {
                     _serialPort.WriteLine("EQ_OFF");
-                    MessageBox.Show("Equalizer uitgeschakeld.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Scroller uitgeschakeld.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
@@ -195,7 +196,7 @@ namespace Project_ICT
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Fout bij uitschakelen EQ: {ex.Message}", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Fout bij uitschakelen Scroller: {ex.Message}", "Fout", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -206,7 +207,7 @@ namespace Project_ICT
             {
                 if (_serialPort != null && _serialPort.IsOpen)
                 {
-                    _serialPort.WriteLine("SCROLL_TEKST_ON");
+                    _serialPort.WriteLine("START");
                     MessageBox.Show("Tekstscrollen ingeschakeld.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
@@ -226,7 +227,7 @@ namespace Project_ICT
             {
                 if (_serialPort != null && _serialPort.IsOpen)
                 {
-                    _serialPort.WriteLine("SCROLL_TEKST_OFF");
+                    _serialPort.WriteLine("STOP");
                     MessageBox.Show("Tekstscrollen uitgeschakeld.", "Succes", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else

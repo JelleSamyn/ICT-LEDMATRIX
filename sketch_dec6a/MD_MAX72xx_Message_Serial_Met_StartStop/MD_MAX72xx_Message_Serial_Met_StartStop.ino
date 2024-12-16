@@ -194,27 +194,27 @@ void setup() {
   Serial.print("\n[MD_MAX72XX Message Display]\nType a message for the scrolling display\nEnd message line with a newline");
 }
 
-bool eqActive = false;
+bool Scroller = false;
 
 void loop() {
   // Check if there's new input from the Serial Monitor
   if (Serial.available()) {
-    String command = Serial.readStringUntil('\n');
+    String command = Serial.readStringUntil('\r');
     command.trim();  // Remove any extra spaces or newline characters
     Serial.println(command);
 
-    if (command == "EQ_ON") {
-      eqActive = true;
+    if (command == "START") {
+      Scroller = true;
       Serial.println("Equalizer started");
-    } else if (command == "EQ_OFF") {
-      eqActive = false;  // Fix: set eqActive to false, not command
+    } else if (command == "STOP") {
+      Scroller = false;
       mx.clear();
       mx.update();
       Serial.println("Equalizer stopped");
     }
   }
 
-  if (eqActive) {
+  if (Scroller) {
     // If Scroll is true, perform scrolling actions
     scrollDelay = getScrollDelay();
     readSerial();

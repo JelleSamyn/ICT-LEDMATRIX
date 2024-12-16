@@ -35,7 +35,8 @@
 
                     <TextBox x:Name="TextBoxMessage" Grid.Row="0" Margin="0,0,0,10" />
                     <Button x:Name="ButtonSend" Grid.Row="1" Content="Send" Width="80" HorizontalAlignment="Left" Click="ButtonSend_Click" />
-                    <Button x:Name="ButtonReset" Grid.Row="1" Content="Reset" Width="80" HorizontalAlignment="Left" Click="ButtonReset_Click" Margin="0,21,0,-21" IsEnabled="False"/>
+                    <Button x:Name="ButtonReset" Grid.Row="1" Content="Reset" Width="80" HorizontalAlignment="Left" Click="ButtonReset_Click" Margin="0,31,0,-31" IsEnabled="False"/>
+                    <CheckBox x:Name="CheckBoxScrollText" Content="Start Scroller" HorizontalAlignment="Left" Height="22" Margin="98,4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="109" Checked="CheckBoxScrollText_Checked" Unchecked="CheckBoxScrollText_Unchecked"/>
                 </Grid>
             </TabItem>
 
@@ -48,7 +49,7 @@
                     </Grid.RowDefinitions>
 
                     <!-- Label voor uitleg -->
-                    <TextBlock Text="EQ Control:" Grid.Row="0" Margin="0,0,0,10" FontWeight="Bold" />
+                    <TextBlock Text="EQ Control" Grid.Row="0" Margin="0,0,0,10" FontWeight="Bold" />
 
                     <!-- CheckBox voor EQ Aan/Af -->
                     <CheckBox x:Name="CheckBoxEQControl" Grid.Row="1" Content="Enable EQ" Checked="CheckBoxEQControl_Checked" Unchecked="CheckBoxEQControl_Unchecked" />

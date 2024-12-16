@@ -186,8 +186,8 @@ void loop1() {
       volume += vReal[i];
     }
     volume /= SAMPLES;  // Average volume
-    Serial.print("Mic Volume: ");
-    Serial.println(volume);
+    // Serial.print("Mic Volume: ");
+    // Serial.println(volume);
 
     post_processing();
     display();
